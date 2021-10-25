@@ -1,0 +1,12 @@
+FROM docker.io/library/golang AS builder
+
+LABEL maintainer="Khaing Min <khaingmin.pmn@gmail.com>"
+
+WORKDIR /go/src
+
+COPY todo-api.go .
+
+RUN go mod init todoapp/todoapi && \ 
+    go mod tidy && \ 
+    go build
+
