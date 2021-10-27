@@ -1,0 +1,5 @@
+FROM docker.io/library/nginx
+
+LABEL maintainer="Khaing Min <khaingmin.pmn@gmail.com>"
+
+COPY . /usr/share/nginx/html
