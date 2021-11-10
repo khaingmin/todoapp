@@ -2,6 +2,7 @@ package main
 
 import (
 	"io"
+	"os"
 	"net/http"
 	"github.com/gorilla/mux"
 	log "github.com/sirupsen/logrus"
@@ -13,8 +14,9 @@ import (
 	"github.com/rs/cors"
 )
 
+var dbURL = os.ExpandEnv("${DB_USER}:${DB_PASS}@tcp(${DB_HOST}:${DB_PORT})/${DB_NAME}?charset=utf8&parseTime=True&loc=Local")
 
-var db, _ = gorm.Open("mysql", "root:root@tcp(localhost:3306)/todolist?charset=utf8&parseTime=True&loc=Local")
+var db, _ = gorm.Open("mysql", dbURL)
 
 type TodoItemModel struct{
 	Id int `gorm:"primary_key"`
